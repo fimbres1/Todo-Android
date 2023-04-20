@@ -3,8 +3,11 @@ package com.example.todo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.databinding.ActivityHomeBinding
 import com.example.todo.datamodel.TaskModel
 import com.google.firebase.auth.FirebaseAuth
@@ -30,7 +33,8 @@ class HomeActivity : AppCompatActivity() {
             goToLogin()
         }
         val currentUser = auth.currentUser
-        Log.e("USER", "Error : Err :" + currentUser!!.uid)
+
+        loadAllData(currentUser!!.uid)
 
         binding.btnAdd.setOnClickListener {
             val task = binding.etTask.text.toString().trim()
@@ -51,6 +55,14 @@ class HomeActivity : AppCompatActivity() {
                 }
         }
 
+        //refresh
+        binding.refresh.setOnRefreshListener {
+            if(binding.refresh.isRefreshing){
+                binding.refresh.isRefreshing = false
+            }
+            loadAllData(currentUser!!.uid)
+        }
+
         binding.btnLogout.setOnClickListener {
             //logout
             auth.signOut()
@@ -61,5 +73,33 @@ class HomeActivity : AppCompatActivity() {
     fun goToLogin(){
         startActivity(Intent(this@HomeActivity, MainActivity::class.java))
         finish()
+    }
+
+    //Load all tasks
+    fun loadAllData(userID : String){
+
+        val taskList = ArrayList<TaskModel>()
+
+        val ref = db.collection("all_tasks")
+        ref.whereEqualTo("userID",userID)
+            .get()
+            .addOnSuccessListener {
+
+                if (it.isEmpty){
+                    Toast.makeText(this@HomeActivity, "No task found", Toast.LENGTH_SHORT).show()
+                    return@addOnSuccessListener
+                }
+
+                for ( doc in it){
+                    val taskModel = doc.toObject(TaskModel::class.java)
+                    taskList.add(taskModel)
+                }
+
+                binding.rvToDoList.apply {
+                    layoutManager = LinearLayoutManager(this@HomeActivity, RecyclerView.VERTICAL, false)
+                    adapter = TaskAdapter(taskList, this@HomeActivity)
+                }
+
+            }
     }
 }

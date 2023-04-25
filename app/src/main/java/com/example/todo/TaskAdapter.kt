@@ -1,6 +1,7 @@
 package com.example.todo
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.ViewParent
@@ -23,11 +24,15 @@ class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
 
     override fun onBindViewHolder(holder: MyHoler, position: Int) {
 
-        val task = taskList[position]
-        with(holder) {
-            binding.tvTaskName.text = task.taskName
-            binding.chBox.isChecked = task.isChecked
+        try {
+            val task = taskList[position]
+            with(holder) {
+                binding.tvTaskName.text = task.taskName
+                binding.chBox.isChecked = task.isChecked
 
+            }
+        }catch (Exception e){
+            Log.e("ERR", "Error")
         }
 
     }

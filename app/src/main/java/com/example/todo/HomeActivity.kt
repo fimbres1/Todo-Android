@@ -3,7 +3,6 @@ package com.example.todo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +11,8 @@ import com.example.todo.databinding.ActivityHomeBinding
 import com.example.todo.datamodel.TaskModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class HomeActivity : AppCompatActivity() {
 
@@ -28,6 +29,7 @@ class HomeActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+
         //user already logged in
         if (auth.currentUser == null){
             goToLogin()
@@ -43,7 +45,7 @@ class HomeActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val taskData = TaskModel(task, false, currentUser!!.uid)
+            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date())
             db.collection("all_tasks")
                 .add(taskData)
                 .addOnSuccessListener {

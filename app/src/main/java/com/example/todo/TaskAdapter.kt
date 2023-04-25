@@ -24,18 +24,16 @@ class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
 
     override fun onBindViewHolder(holder: MyHoler, position: Int) {
 
-        try {
-            val task = taskList[position]
-            with(holder) {
-                binding.tvTaskName.text = task.taskName
-                binding.chBox.isChecked = task.isChecked
 
-            }
-        }catch (Exception e){
-            Log.e("ERR", "Error")
+
+        val task = taskList[position]
+        with(holder) {
+            binding.tvTaskName.text = task.taskName
+            binding.chBox.isChecked = task.isChecked
         }
-
     }
+
+
 
     override fun getItemCount(): Int {
         return taskList.size

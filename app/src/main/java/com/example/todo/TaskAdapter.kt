@@ -30,6 +30,7 @@ class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
         with(holder) {
             binding.tvTaskName.text = task.taskName
             binding.chBox.isChecked = task.isChecked
+            //binding. = task.Date
         }
     }
 

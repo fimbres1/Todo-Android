@@ -28,6 +28,30 @@
                 android:layout_weight="1"
                 android:hint="Enter Todo Task" />
 
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:hint="Enter Priority">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    >
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etPriority"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAdd"
                 android:layout_width="wrap_content"

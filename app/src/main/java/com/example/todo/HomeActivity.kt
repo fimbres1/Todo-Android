@@ -20,6 +20,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var db : FirebaseFirestore
 
     lateinit var binding : ActivityHomeBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,7 +47,12 @@ class HomeActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date())
+            val priority =binding.etPriority.text.toString()
+            if (priority.isEmpty()){
+                binding.etPriority.setError("Priority cannot be empty")
+            }
+
+            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date(), taskPriority = String())
             db.collection("all_tasks")
                 .add(taskData)
                 .addOnSuccessListener {
@@ -71,7 +78,7 @@ class HomeActivity : AppCompatActivity() {
             goToLogin()
         }
     }
-
+    
     fun goToLogin(){
         startActivity(Intent(this@HomeActivity, MainActivity::class.java))
         finish()

@@ -36,35 +36,30 @@
                 android:hint="Enter Priority">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    >
+                    android:layout_height="83dp"
+                    android:layout_margin="0dp"
+                    android:hint="@string/select">
 
                     <AutoCompleteTextView
                         android:id="@+id/etPriority"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"/>
+                        android:layout_height="50dp"
+                        android:inputType="none" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Add" />
         </LinearLayout>
 
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/refresh">
+            android:layout_height="480dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvToDoList"
@@ -74,6 +69,14 @@
 
 
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Add" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogout"

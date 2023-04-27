@@ -3,6 +3,7 @@ package com.example.todo
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,8 +19,10 @@ class HomeActivity : AppCompatActivity() {
 
     lateinit var auth: FirebaseAuth
     lateinit var db : FirebaseFirestore
-
     lateinit var binding : ActivityHomeBinding
+
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +30,16 @@ class HomeActivity : AppCompatActivity() {
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val priorities = resources.getStringArray(R.array.Priority)
+        val adapter = ArrayAdapter(
+            this,
+            R.layout.list_item,
+            priorities
+        )
 
+        with(binding.etPriority){
+            setAdapter(adapter)
+        }
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
@@ -52,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
                 binding.etPriority.setError("Priority cannot be empty")
             }
 
-            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date(), taskPriority = String())
+            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date())
             db.collection("all_tasks")
                 .add(taskData)
                 .addOnSuccessListener {

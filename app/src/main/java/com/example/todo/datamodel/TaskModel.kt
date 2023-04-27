@@ -8,5 +8,4 @@ class TaskModel(
     val isChecked: Boolean = false,
     val userID: String = "",
     val Date: Date? = null,
-    val taskPriority: String = ""
 )

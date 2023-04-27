@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Todo" parent="android:Theme.Material.Light.NoActionBar" />
-    <string name="Todo_Priority">Dropdown</string>
-    <string name="select">Select Item</string>
 </resources>

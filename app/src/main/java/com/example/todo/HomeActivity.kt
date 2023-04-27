@@ -64,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
                 binding.etPriority.setError("Priority cannot be empty")
             }
 
-            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date())
+            val taskData = TaskModel(task, false, currentUser!!.uid, Date = Date(), priority)
             db.collection("all_tasks")
                 .add(taskData)
                 .addOnSuccessListener {

@@ -3,8 +3,8 @@
     <string name="Todo_Priority">Dropdown</string>
     <string name="select">Priority</string>
     <string-array name="Priority">
-        <item>Low</item>
-        <item>Medium</item>
-        <item>High</item>
+        <item>1 Low</item>
+        <item>2 Medium</item>
+        <item>3 High</item>
     </string-array>
 </resources>

@@ -12,6 +12,7 @@ import com.example.todo.databinding.ActivityHomeBinding
 import com.example.todo.datamodel.TaskModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -103,6 +104,7 @@ class HomeActivity : AppCompatActivity() {
 
         val ref = db.collection("all_tasks")
         ref.whereEqualTo("userID",userID)
+        ref.whereEqualTo("priority", "3 High").limit(3)
             .get()
             .addOnSuccessListener {
 

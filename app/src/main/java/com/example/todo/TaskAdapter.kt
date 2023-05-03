@@ -12,14 +12,16 @@ import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.databinding.TaskItemBinding
 import com.example.todo.datamodel.TaskModel
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.concurrent.timerTask
 
 
 class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
     RecyclerView.Adapter<TaskAdapter.MyHolder>() {
+    lateinit var db : FirebaseFirestore
     class MyHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    lateinit var db : FirebaseFirestore
 
     fun checkLateInit(){
         if (this::db.isInitialized){
@@ -36,6 +38,7 @@ class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
     }
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
+        db = FirebaseFirestore.getInstance()
         try {
             val task = taskList[position]
             with(holder) {
@@ -43,9 +46,11 @@ class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
                 binding.chBox.isChecked = task.isChecked
                 binding.tvPriority.text = task.Priority
                 binding.btnDelete.setOnClickListener(View.OnClickListener {
-                    db.collection("all_tasks").document("document=**").delete()
+                    val id = db.document().id
+                    db.collection("all_tasks").document(id).delete()
                         .addOnSuccessListener { Log.d(TAG, "Task deleted") }
                         .addOnFailureListener { e -> Log.w(TAG, "Error deleting", e) }
+
                 })
             }
         }catch (w:Exception){
@@ -59,5 +64,13 @@ class TaskAdapter(val taskList: ArrayList<TaskModel>, val context: Context) :
         return taskList.size
     }
 
+}
+
+private fun FirebaseFirestore.document(): DocumentReference {
+    return DocumentReference()
+}
+
+fun DocumentReference(): DocumentReference {
+    return DocumentReference()
 }
 

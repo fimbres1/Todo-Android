@@ -63,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+
             val priority =binding.etPriority.text.toString()
             if (priority.isEmpty()){
                 binding.etPriority.setError("Priority cannot be empty")
@@ -87,6 +88,7 @@ class HomeActivity : AppCompatActivity() {
 
         //refresh
         binding.refresh.setOnRefreshListener {
+            adapter.notifyDataSetChanged()
             if(binding.refresh.isRefreshing){
                 binding.refresh.isRefreshing = false
             }

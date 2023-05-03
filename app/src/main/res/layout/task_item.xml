@@ -22,8 +22,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="######"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
+            android:layout_weight="0.5"
             android:textSize="16sp" />
+
+        <TextView
+        android:id="@+id/tvPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="######"
+        android:layout_weight="0.5"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Delete" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

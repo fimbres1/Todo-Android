@@ -64,7 +64,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvToDoList"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:scrollbars="vertical" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
@@ -85,4 +86,5 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:text="Logout" />
+
 </LinearLayout>

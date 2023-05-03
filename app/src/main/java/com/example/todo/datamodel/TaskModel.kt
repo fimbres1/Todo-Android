@@ -1,7 +1,6 @@
 package com.example.todo.datamodel
 
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
+import com.google.firebase.firestore.DocumentReference
 import java.util.Date
 
 class TaskModel(
@@ -10,4 +9,5 @@ class TaskModel(
     val userID: String = "",
     val Date: Date? = null,
     val Priority: String = "",
+    val documentID: DocumentReference? = null,
 )

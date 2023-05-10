@@ -8,6 +8,6 @@ class TaskModel(
     val isChecked: Boolean = false,
     val userID: String = "",
     val Date: Date? = null,
-    val Priority: String = "",
+    var priority: String = "",
     val id: DocumentReference? = null,
 )
